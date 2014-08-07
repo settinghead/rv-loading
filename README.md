@@ -1,4 +1,4 @@
-rv-loading
-==========
+angular-spinner
+===============
 
-Rise Vision AngularJS Loading Spinner
+The Rise Vision AngularJS Spinner
