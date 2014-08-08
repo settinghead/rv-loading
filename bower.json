@@ -6,7 +6,9 @@
   "description": "",
   "dependencies": {
     "jQuery": "1.11.0",
-    "angular-spinner": "~0.4.0",
+    "angular-spinner": "~0.4.0"
+  },
+  "devDependencies": {
     "angular-mocks": "1.2.4",
     "angular-route": "1.2.4",
     "q": "1.0.1"
