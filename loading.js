@@ -66,7 +66,7 @@ angular.module("rvLoading", ["angularSpinner"])
         scope.active = angular.isDefined(iAttrs.rvSpinnerStartActive) && iAttrs.rvSpinnerStartActive === "1";
         var tpl = "<div ng-show=\"active\" class=\"spinner-backdrop fade {{backdropClass}}\"" + 
           " ng-class=\"{in: active}\" us-spinner=\"rvSpinnerOptions\"" + 
-          " spinner-key=\"product-view\"";
+          " spinner-key=\"{{rvSpinnerKey}}\"";
         
         if (iAttrs.rvSpinnerStartActive && iAttrs.rvSpinnerStartActive === "1") {
           tpl += " spinner-start-active=\"1\"></div>";
