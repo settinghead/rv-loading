@@ -13,9 +13,17 @@
 
 <!-- Dynamic Example -->
 
-<hljs include="'rv-loading-spinner'"></hljs>
+<div class="row example">
+  <hljs include="'rv-loading-spinner'"></hljs>
+</div>
 
-<div style="height: 200px;">
+<div style="height: 200px; position: relative; width: 100%; margin: 20px 0; padding: 20px;">
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   <ng-include src="'rv-loading-spinner'"></ng-include>
 </div>
 
@@ -81,5 +89,6 @@ $loading.stopSpinnerAfterPromise("rv-loading-spinner-demo", promises);
 <div rv-spinner="defaultSpinnerOptions"
      rv-spinner-key="rv-loading-spinner-demo"
      rv-spinner-start-active="1"
+     rv-spinner-backdrop-class="spinner-backdrop"
 ></div>
 </script>
