@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("rvLoading", ["angularSpinner"])
+angular.module("risevison.common.loading", ["angularSpinner"])
   .service("$loading", ["$q", "$rootScope", function ($q, $rootScope) {
     var self = this;
     this.start = function(spinnerKeys) {
