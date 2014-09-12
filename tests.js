@@ -3,7 +3,7 @@
 
 describe("Services: $loading", function() {
 
-  beforeEach(module("rvLoading"));
+  beforeEach(module("risevision.common.loading"));
 
   it("should exist", function(done) {
     inject(function($loading) {
