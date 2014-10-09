@@ -6,7 +6,7 @@
   ],
   "description": "",
   "dependencies": {
-    "jQuery": "1.11.0",
+    "jquery": "~1.11.1",
     "angular-spinner": "~0.4.0",
     "angular-mocks": "~1.2.24"
   },
