@@ -90,16 +90,16 @@ angular.module("risevision.common.loading", ["angularSpinner"])
   }])
 
   .directive("rvGlobalSpinner", ["usSpinnerService", "$compile", "_rvGlobalSpinnerRegistry",
-    function (usSpinnerService, $compile, _rvGlobalSpinnerRegistry) {
+    "$timeout",
+    function (usSpinnerService, $compile, _rvGlobalSpinnerRegistry, $timeout) {
     return {
       scope: true,
       link: function (scope, $element) {
+
         var tpl = "<div ng-show=\"active\" class=\"spinner-backdrop fade\"" +
           " ng-class=\"{in: active}\" us-spinner=\"rvSpinnerOptions\"" +
           " spinner-key=\"_rv-global-spinner\"></div>";
           $element.prepend($compile(tpl)(scope));
-
-        scope.active = false;
 
         scope.rvSpinnerOptions = {
             lines: 13, // The number of lines to draw
@@ -134,13 +134,17 @@ angular.module("risevision.common.loading", ["angularSpinner"])
         scope.$watch("active", function (active) {
           if(active) {
             $element.removeClass("ng-hide");
-            usSpinnerService.spin("_rv-global-spinner"); }
+          }
           else {
             $element.addClass("ng-hide");
-            usSpinnerService.stop("_rv-global-spinner"); }
+          }
         });
 
-        scope.active = false;
+        $timeout(function () {
+          usSpinnerService.spin("_rv-global-spinner");
+        });
+        scope.active = true;
+
         }
       };
   }])
