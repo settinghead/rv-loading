@@ -1,7 +1,7 @@
 "use strict";
 
 angular.module("risevision.common.loading", ["angularSpinner"])
-  .value("_rvGlobalSpinnerRegistry", [])
+  .value("_rvGlobalSpinnerRegistry", {})
 
   .service("$loading", ["$q", "$rootScope", "$document", "_rvGlobalSpinnerRegistry",
     function ($q, $rootScope, $document, _rvGlobalSpinnerRegistry) {
@@ -26,21 +26,22 @@ angular.module("risevision.common.loading", ["angularSpinner"])
     angular.element($document[0].body).append(
       "<div rv-global-spinner class=\"ng-hide\" style=\"position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: 1040; \"></div>");
 
-    function _addKeyToRegistry(key) {
-      if(_rvGlobalSpinnerRegistry.indexOf(key) < 0) { _rvGlobalSpinnerRegistry.push(key); }
+    function _addKeyToRegistry(key, opts) {
+      if(!_rvGlobalSpinnerRegistry[key]) { _rvGlobalSpinnerRegistry[key] = opts; }
     }
 
     function _removeKeyFromRegistry(key) {
-      var index;
-      if((index = _rvGlobalSpinnerRegistry.indexOf(key)) >= 0) {
-        _rvGlobalSpinnerRegistry.splice(index, 1);
+      if(_rvGlobalSpinnerRegistry[key]) {
+        delete _rvGlobalSpinnerRegistry[key];
       }
     }
 
-    this.startGlobal = function (spinnerKeys) {
+    this.startGlobal = function (spinnerKeys, opts) {
+      opts = opts || {};
+
       spinnerKeys = angular.isArray(spinnerKeys) ? spinnerKeys : [spinnerKeys];
       angular.forEach(spinnerKeys, function (key) {
-        _addKeyToRegistry(key);
+        _addKeyToRegistry(key, opts);
       });
     };
 
@@ -123,12 +124,11 @@ angular.module("risevision.common.loading", ["angularSpinner"])
         scope.registry = _rvGlobalSpinnerRegistry;
 
         scope.$watchCollection("registry", function () {
-          if(scope.registry.length > 0) {
+          for (var property in scope.registry) { // jshint ignore:line
             scope.active = true;
+            return;
           }
-          else {
-            scope.active = false;
-          }
+          scope.active = false;
         });
 
         scope.$watch("active", function (active) {
